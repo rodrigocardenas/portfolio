@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rodrigo Cárdenas Plaza — CTO & Senior Full Stack Developer con +10 años de experiencia en HealthTech, PropTech y Social Gaming. Laravel, TypeScript, AWS. Basado en Barcelona." />
+  <title>Rodrigo Cárdenas Plaza · CTO & Full Stack Senior Developer</title>
+
+  <!-- ── Tailwind CSS (CDN) ── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ── Alpine.js ── -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- ── Google Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- ── Tailwind config ── -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease-out forwards',
+            'fade-in':    'fadeIn 0.8s ease-out forwards',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4,0,0.6,1) infinite',
+            'spin-slow':  'spin 3s linear infinite',
+            'gradient-x': 'gradientX 6s ease infinite',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%'  : { opacity: '0', transform: 'translateY(28px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%'  : { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            gradientX: {
+              '0%,100%': { backgroundPosition: '0% 50%' },
+              '50%'     : { backgroundPosition: '100% 50%' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- ── Custom styles ── -->
+  <style>
+    /* ─── Base ─────────────────────────────────────────────── */
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #080810;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+
+    /* ─── Gradient text ─────────────────────────────────────── */
+    .gradient-text {
+      background: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #22d3ee 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 4s linear infinite;
+    }
+    @keyframes gradientShift {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* ─── Glassmorphism card ─────────────────────────────────── */
+    .glass {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* ─── Card hover lift ────────────────────────────────────── */
+    .card-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 60px rgba(6,182,212,0.13), 0 8px 30px rgba(0,0,0,0.5);
+      border-color: rgba(34,211,238,0.25) !important;
+    }
+
+    /* ─── Primary CTA button ─────────────────────────────────── */
+    .btn-primary {
+      background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+      background-size: 200% auto;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-position 0.4s ease;
+    }
+    .btn-primary:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(6,182,212,0.4), 0 4px 20px rgba(139,92,246,0.3);
+    }
+
+    /* ─── Dot-grid background ────────────────────────────────── */
+    .dot-grid {
+      background-image: radial-gradient(rgba(34,211,238,0.10) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    /* ─── Ambient orb ────────────────────────────────────────── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+    @keyframes orbFloat {
+      0%,100% { transform: translateY(0)   scale(1);   }
+      50%      { transform: translateY(-20px) scale(1.05); }
+    }
+
+    /* ─── Nav blur ───────────────────────────────────────────── */
+    .nav-blur {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(8,8,16,0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ─── Tech tag pill ──────────────────────────────────────── */
+    .tech-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(139,92,246,0.08));
+      border: 1px solid rgba(6,182,212,0.18);
+      color: #67e8f9;
+      white-space: nowrap;
+    }
+
+    /* ─── Section reveal ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Custom scrollbar ───────────────────────────────────── */
+    ::-webkit-scrollbar       { width: 5px; }
+    ::-webkit-scrollbar-track { background: #080810; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #06b6d4, #8b5cf6);
+      border-radius: 3px;
+    }
+
+    /* ─── Blinking cursor ────────────────────────────────────── */
+    .cursor::after {
+      content: '|';
+      color: #22d3ee;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity:1; }
+      50%      { opacity:0; }
+    }
+
+    /* ─── Section number label ───────────────────────────────── */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #22d3ee;
+    }
+
+    /* ─── Timeline ───────────────────────────────────────────── */
+    .timeline-line {
+      position: absolute;
+      left: 1.5rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, #22d3ee 0%, #8b5cf6 60%, transparent 100%);
+      opacity: 0.25;
+    }
+
+    /* ─── Form inputs ────────────────────────────────────────── */
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 0.75rem;
+      padding: 0.6rem 1rem;
+      font-size: 0.875rem;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .form-input::placeholder { color: #475569; }
+    .form-input:focus {
+      border-color: rgba(34,211,238,0.45);
+      background: rgba(34,211,238,0.04);
+    }
+
+    [x-cloak] { display: none !important; }
+  </style>
+</head>
+
+<!-- ════════════════════════════════════════════════════════
+     Alpine root component
+════════════════════════════════════════════════════════════ -->
+<body
+  class="bg-[#080810] text-slate-200 antialiased"
+  x-data="portfolio()"
+  x-init="init()"
+>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════════════════ -->
+  <nav
+    class="fixed top-0 inset-x-0 z-50 nav-blur"
+    x-data="{ open: false }"
+  >
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-2.5 group">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-violet-600 flex items-center justify-center font-mono font-bold text-xs text-white shadow-lg shadow-cyan-500/20">
+            RC
+          </div>
+          <span class="hidden sm:block text-sm font-semibold text-slate-300 group-hover:text-white transition-colors">
+            rodrigo<span class="text-cyan-400">.dev</span>
+          </span>
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-1">
+          <template x-for="item in nav" :key="item.id">
+            <a
+              :href="'#' + item.id"
+              class="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200"
+              :class="activeSection === item.id
+                ? 'text-cyan-400 bg-cyan-500/10'
+                : 'text-slate-400 hover:text-white hover:bg-white/5'"
+              x-text="item.label"
+            ></a>
+          </template>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-2">
+
+          <!-- Dark / Light toggle -->
+          <button
+            @click="toggleDark()"
+            class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all"
+            title="Alternar tema"
+          >
+            <svg x-show="darkMode" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg x-show="!darkMode" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </button>
+
+          <!-- Download CV -->
+          <a
+            href="./assets/CV_Rodrigo_Cardenas.pdf"
+            download
+            class="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold rounded-lg btn-primary text-white"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Descargar CV
+          </a>
+
+          <!-- Mobile hamburger -->
+          <button
+            @click="open = !open"
+            class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all"
+          >
+            <svg x-show="!open" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg x-show="open" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div><!-- /Actions -->
+      </div><!-- /inner row -->
+
+      <!-- Mobile menu -->
+      <div
+        x-show="open"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        @click.outside="open = false"
+        class="md:hidden pt-3 pb-4 border-t border-white/5 mt-1 flex flex-col gap-1"
+      >
+        <template x-for="item in nav" :key="item.id">
+          <a
+            :href="'#' + item.id"
+            @click="open = false"
+            class="px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+            x-text="item.label"
+          ></a>
+        </template>
+        <a
+          href="./assets/CV_Rodrigo_Cardenas.pdf"
+          download
+          class="mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl btn-primary text-white"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          Descargar CV (PDF)
+        </a>
+      </div>
+    </div><!-- /container -->
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden dot-grid">
+
+    <!-- Ambient orbs -->
+    <div class="orb w-[520px] h-[520px] bg-cyan-500/8 -top-24 -left-32" style="animation-delay:0s"></div>
+    <div class="orb w-[380px] h-[380px] bg-violet-600/8 bottom-16 right-0" style="animation-delay:2.5s"></div>
+    <div class="orb w-[240px] h-[240px] bg-pink-500/6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="animation-delay:5s"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-36 text-center">
+
+      <!-- Availability badge -->
+      <div
+        class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full glass text-xs font-medium text-slate-300 mb-10"
+        style="animation: fadeInUp 0.6s ease-out 0.1s both;"
+      >
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+        </span>
+        Disponible · CTO / Tech Lead &amp; proyectos de alto impacto · Barcelona 🇪🇸
+      </div>
+
+      <!-- Name -->
+      <h1
+        class="text-5xl sm:text-6xl lg:text-[5.5rem] font-black tracking-tight text-white leading-[1.05] mb-5"
+        style="animation: fadeInUp 0.7s ease-out 0.25s both;"
+      >
+        Rodrigo<br />
+        <span class="gradient-text">Cárdenas Plaza</span>
+      </h1>
+
+      <!-- Role badge -->
+      <div
+        class="flex items-center justify-center gap-4 mb-8"
+        style="animation: fadeInUp 0.7s ease-out 0.4s both;"
+      >
+        <div class="h-px w-14 bg-gradient-to-r from-transparent to-cyan-500 opacity-60"></div>
+        <p class="text-sm sm:text-base font-mono font-medium text-slate-300 tracking-wide">
+          <span class="text-cyan-400">&lt;</span>
+          CTO &amp; Senior Full Stack Developer
+          <span class="text-cyan-400"> /&gt;</span>
+        </p>
+        <div class="h-px w-14 bg-gradient-to-l from-transparent to-violet-500 opacity-60"></div>
+      </div>
+
+      <!-- Description -->
+      <p
+        class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg leading-relaxed mb-11"
+        style="animation: fadeInUp 0.7s ease-out 0.55s both;"
+      >
+        Ingeniero Informático con
+        <strong class="text-white font-semibold">+10 años de experiencia</strong>
+        llevando productos digitales de la idea a producción en
+        <span class="text-cyan-300 font-medium">HealthTech</span>,
+        <span class="text-violet-300 font-medium">PropTech</span>
+        y <span class="text-pink-300 font-medium">Social Gaming</span>.
+        Actualmente <strong class="text-white font-semibold">CTO en Offside</strong>,
+        construyendo la próxima plataforma de gaming social deportivo.
+        Participante <strong class="text-white font-semibold">4YFN 2026</strong>.
+      </p>
+
+      <!-- CTA row -->
+      <div
+        class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
+        style="animation: fadeInUp 0.7s ease-out 0.7s both;"
+      >
+        <!-- Primary: Download CV -->
+        <a
+          href="./assets/CV_Rodrigo_Cardenas.pdf"
+          download
+          class="btn-primary inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-white font-semibold text-sm shadow-2xl shadow-cyan-500/20"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          Descargar CV (PDF)
+        </a>
+
+        <!-- Secondary: See work -->
+        <a
+          href="#experiencia"
+          class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-slate-300 font-semibold text-sm glass hover:border-cyan-500/30 hover:text-white transition-all duration-300"
+        >
+          Ver mi experiencia
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Social links -->
+      <div
+        class="flex flex-wrap items-center justify-center gap-3"
+        style="animation: fadeInUp 0.7s ease-out 0.85s both;"
+      >
+        <!-- GitHub -->
+        <a
+          href="https://github.com/rodrigocardenas"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center gap-2 px-4 py-2 glass rounded-xl hover:border-cyan-500/30 hover:bg-cyan-500/5 transition-all duration-300"
+        >
+          <svg class="w-4 h-4 text-slate-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+          </svg>
+          <span class="text-xs font-medium text-slate-400 group-hover:text-white transition-colors">GitHub</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/rodrigocadplaz"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center gap-2 px-4 py-2 glass rounded-xl hover:border-blue-500/30 hover:bg-blue-500/5 transition-all duration-300"
+        >
+          <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          <span class="text-xs font-medium text-slate-400 group-hover:text-white transition-colors">LinkedIn</span>
+        </a>
+
+        <!-- Email -->
+        <a
+          href="mailto:rodrigo.cardenasplaza@gmail.com"
+          class="group flex items-center gap-2 px-4 py-2 glass rounded-xl hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-300"
+        >
+          <svg class="w-4 h-4 text-slate-400 group-hover:text-violet-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          <span class="text-xs font-medium text-slate-400 group-hover:text-white transition-colors">Email</span>
+        </a>
+
+        <!-- 4YFN badge -->
+        <div class="flex items-center gap-2 px-4 py-2 glass rounded-xl border border-yellow-500/20">
+          <span class="text-sm">🏆</span>
+          <span class="text-xs font-medium text-yellow-400/80">4YFN 2026</span>
+        </div>
+      </div><!-- /social -->
+
+    </div><!-- /container -->
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0"
+         style="animation: fadeIn 1s ease-out 1.6s forwards;">
+      <span class="text-[0.6rem] font-mono text-slate-600 tracking-[0.25em] uppercase">scroll</span>
+      <div class="w-px h-10 bg-gradient-to-b from-cyan-500 to-transparent animate-pulse"></div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       EXPERIENCIA (Timeline)
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="experiencia" class="py-28 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center mb-20 reveal">
+        <span class="section-label mb-3 block">02 — Trayectoria</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Experiencia Profesional</h2>
+        <p class="text-slate-400 text-sm max-w-lg mx-auto">
+          +10 años llevando productos de la idea a producción en sectores críticos.
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative">
+        <div class="timeline-line"></div>
+
+        <div class="space-y-10 pl-12 md:pl-0">
+          <template x-for="(job, i) in experience" :key="job.company">
+
+            <!-- Two-column alternating layout on md+ -->
+            <div
+              class="relative md:grid md:grid-cols-2 md:gap-10 reveal"
+              :style="`transition-delay:${i * 0.1}s`"
+            >
+              <!-- Timeline dot -->
+              <div
+                class="absolute left-0 top-6 md:left-1/2 w-3.5 h-3.5 rounded-full border-2 border-cyan-400 bg-[#080810] -translate-x-[calc(50%+0.5px)] z-10 shadow-lg shadow-cyan-500/40"
+                :class="i === 0 ? 'bg-cyan-400' : 'bg-[#080810]'"
+              ></div>
+
+              <!-- Left column — date & sector (even), card (odd) -->
+              <div
+                class="hidden md:flex flex-col justify-center"
+                :class="i % 2 === 0 ? 'items-end pr-8' : 'items-start pl-8 order-last'"
+              >
+                <span
+                  class="inline-block glass px-3 py-1.5 rounded-lg font-mono text-xs text-slate-400"
+                  x-text="job.period"
+                ></span>
+                <span class="mt-1.5 text-xs text-slate-500" x-text="job.sector"></span>
+              </div>
+
+              <!-- Card -->
+              <div
+                class="glass card-lift rounded-2xl p-6 md:p-7"
+                :class="i % 2 === 0 ? 'md:pl-8' : 'md:pr-8'"
+              >
+                <!-- Mobile: period -->
+                <div class="flex items-center justify-between mb-1 md:hidden">
+                  <span class="font-mono text-[0.65rem] text-slate-500" x-text="job.period"></span>
+                </div>
+
+                <div class="flex items-start gap-4 mb-4">
+                  <!-- Company avatar -->
+                  <div
+                    class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-lg"
+                    :class="job.iconBg"
+                    x-text="job.emoji"
+                  ></div>
+                  <div>
+                    <h3 class="font-bold text-white text-sm leading-snug" x-text="job.role"></h3>
+                    <p class="text-cyan-400 text-xs font-semibold mt-0.5" x-text="job.company"></p>
+                  </div>
+                </div>
+
+                <!-- Bullets -->
+                <ul class="space-y-2 mb-5">
+                  <template x-for="b in job.bullets" :key="b">
+                    <li class="flex items-start gap-2 text-slate-300 text-sm leading-relaxed">
+                      <span class="text-cyan-400 shrink-0 mt-0.5">▸</span>
+                      <span x-text="b"></span>
+                    </li>
+                  </template>
+                </ul>
+
+                <!-- Tech tags -->
+                <div class="flex flex-wrap gap-1.5">
+                  <template x-for="t in job.tech" :key="t">
+                    <span class="tech-pill" x-text="t"></span>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div><!-- /timeline items -->
+      </div><!-- /timeline -->
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       HABILIDADES & PROYECTOS
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="habilidades" class="py-28 relative bg-gradient-to-b from-transparent via-[#0d0d1c] to-transparent">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center mb-20 reveal">
+        <span class="section-label mb-3 block">03 — Stack & Proyectos</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Habilidades & Proyectos</h2>
+        <p class="text-slate-400 text-sm max-w-lg mx-auto">
+          Tecnologías que uso a diario y proyectos que reflejan mi capacidad de entrega.
+        </p>
+      </div>
+
+      <!-- ── Skills cards ───────────────────────────── -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-14">
+        <template x-for="(cat, i) in skills" :key="cat.name">
+          <div
+            class="glass card-lift rounded-2xl p-6 reveal"
+            :style="`transition-delay:${i * 0.1}s`"
+          >
+            <div class="flex items-center gap-3 mb-5">
+              <div
+                class="w-11 h-11 rounded-xl flex items-center justify-center text-xl"
+                :class="cat.iconBg"
+                x-text="cat.icon"
+              ></div>
+              <div>
+                <h3 class="font-bold text-white text-sm" x-text="cat.name"></h3>
+                <p class="text-xs text-slate-500" x-text="cat.subtitle"></p>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <template x-for="sk in cat.items" :key="sk.name">
+                <span
+                  class="inline-block text-xs font-medium px-3 py-1.5 rounded-lg transition-all"
+                  :class="sk.featured
+                    ? 'bg-cyan-500/12 border border-cyan-500/30 text-cyan-300'
+                    : 'bg-white/5 border border-white/6 text-slate-400 hover:text-white'"
+                  x-text="sk.name"
+                ></span>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- ── Projects grid ──────────────────────────── -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <template x-for="(proj, i) in projects" :key="proj.name">
+          <div
+            class="glass card-lift rounded-2xl p-6 relative overflow-hidden reveal"
+            :style="`transition-delay:${i * 0.1}s`"
+          >
+            <!-- BG accent blob -->
+            <div
+              class="absolute -top-8 -right-8 w-40 h-40 rounded-full blur-3xl opacity-15"
+              :class="proj.accentColor"
+            ></div>
+
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <span class="text-2xl" x-text="proj.emoji"></span>
+                <div>
+                  <h3 class="font-bold text-white text-sm" x-text="proj.name"></h3>
+                  <span
+                    class="inline-block text-[0.65rem] font-semibold px-2 py-0.5 rounded-full mt-0.5"
+                    :class="proj.badge"
+                    x-text="proj.type"
+                  ></span>
+                </div>
+              </div>
+              <a
+                :href="proj.url"
+                target="_blank"
+                class="text-slate-600 hover:text-cyan-400 transition-colors mt-1"
+                title="Ver proyecto"
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+
+            <p class="text-slate-400 text-sm leading-relaxed mb-4" x-text="proj.description"></p>
+
+            <div class="flex flex-wrap gap-1.5">
+              <template x-for="t in proj.tech" :key="t">
+                <span class="tech-pill" x-text="t"></span>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       EDUCACIÓN
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="educacion" class="py-20 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-14 reveal">
+        <span class="section-label mb-3 block">04 — Formación</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Educación</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+        <!-- UB Master's -->
+        <div class="glass card-lift rounded-2xl p-6 reveal">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl">🎓</div>
+            <div>
+              <p class="text-[0.65rem] font-mono text-slate-500 mb-1">Sep 2024 — Sep 2025</p>
+              <h3 class="font-bold text-white text-sm leading-snug mb-0.5">
+                Máster en Creación y Gestión de Empresas Innovadoras y de Base Tecnológica
+              </h3>
+              <p class="text-blue-400 text-xs font-semibold">Universitat de Barcelona</p>
+              <div class="flex flex-wrap gap-1.5 mt-3">
+                <span class="tech-pill">Startups</span>
+                <span class="tech-pill">Innovación</span>
+                <span class="tech-pill">Gestión Tecnológica</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- UTEM Engineering -->
+        <div class="glass card-lift rounded-2xl p-6 reveal" style="transition-delay: 0.1s">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-xl">⚙️</div>
+            <div>
+              <p class="text-[0.65rem] font-mono text-slate-500 mb-1">2009 — 2014</p>
+              <h3 class="font-bold text-white text-sm leading-snug mb-0.5">
+                Ingeniería Informática
+              </h3>
+              <p class="text-cyan-400 text-xs font-semibold">Universidad Tecnológica Metropolitana (UTEM)</p>
+              <div class="flex flex-wrap gap-1.5 mt-3">
+                <span class="tech-pill">Sistemas</span>
+                <span class="tech-pill">Algoritmos</span>
+                <span class="tech-pill">Bases de Datos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       CONTACTO
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="contacto" class="py-28 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center mb-16 reveal">
+        <span class="section-label mb-3 block">05 — Contacto</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Trabajemos juntos</h2>
+        <p class="text-slate-400 text-sm max-w-md mx-auto">
+          ¿Tienes un proyecto, idea o posición senior? Estoy disponible y con mucho gusto conversamos.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-7 reveal">
+
+        <!-- Info cards -->
+        <div class="md:col-span-2 flex flex-col gap-4">
+
+          <a href="mailto:rodrigo.cardenasplaza@gmail.com"
+             class="glass card-lift rounded-2xl p-5 group flex items-center gap-4">
+            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[0.65rem] text-slate-500 font-medium uppercase tracking-widest mb-0.5">Email</p>
+              <p class="text-sm font-semibold text-white group-hover:text-cyan-300 transition-colors break-all">
+                rodrigo.cardenasplaza@gmail.com
+              </p>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/rodrigocadplaz" target="_blank" rel="noopener noreferrer"
+             class="glass card-lift rounded-2xl p-5 group flex items-center gap-4">
+            <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[0.65rem] text-slate-500 font-medium uppercase tracking-widest mb-0.5">LinkedIn</p>
+              <p class="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors">
+                linkedin.com/in/rodrigocadplaz
+              </p>
+            </div>
+          </a>
+
+          <div class="glass rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[0.65rem] text-slate-500 font-medium uppercase tracking-widest mb-0.5">Ubicación</p>
+              <p class="text-sm font-semibold text-white">Barcelona, España 🇪🇸</p>
+            </div>
+          </div>
+
+          <!-- Languages -->
+          <div class="glass rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-11 h-11 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 shrink-0 text-lg">
+              💬
+            </div>
+            <div>
+              <p class="text-[0.65rem] text-slate-500 font-medium uppercase tracking-widest mb-1">Idiomas</p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="tech-pill">Español (Nativo)</span>
+                <span class="tech-pill">English (Professional)</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /info cards -->
+
+        <!-- Contact form -->
+        <div class="md:col-span-3 glass rounded-2xl p-7 sm:p-8">
+          <form
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST"
+            @submit.prevent="submitForm($event)"
+            class="space-y-4"
+          >
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-slate-400 mb-1.5">Nombre</label>
+                <input type="text" name="name" required class="form-input" placeholder="Tu nombre" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-400 mb-1.5">Email</label>
+                <input type="email" name="email" required class="form-input" placeholder="tu@email.com" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1.5">Asunto</label>
+              <input type="text" name="subject" class="form-input" placeholder="¿En qué puedo ayudarte?" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1.5">Mensaje</label>
+              <textarea
+                name="message"
+                rows="5"
+                required
+                class="form-input resize-none"
+                placeholder="Cuéntame sobre tu proyecto o propuesta..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full btn-primary py-3 rounded-xl text-white font-semibold text-sm flex items-center justify-center gap-2"
+              :disabled="formLoading"
+            >
+              <span x-show="!formLoading">
+                Enviar mensaje
+                <svg class="w-4 h-4 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </span>
+              <span x-show="formLoading" class="flex items-center gap-2">
+                <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                </svg>
+                Enviando...
+              </span>
+            </button>
+
+            <!-- Feedback messages -->
+            <p x-show="formSuccess" x-cloak
+               class="text-center text-sm text-emerald-400 glass rounded-xl py-2.5 px-4">
+              ✓ ¡Mensaje enviado! Te responderé a la brevedad.
+            </p>
+            <p x-show="formError" x-cloak
+               class="text-center text-sm text-red-400 glass rounded-xl py-2.5 px-4">
+              ✗ Algo salió mal. Intenta de nuevo o escríbeme directo.
+            </p>
+          </form>
+        </div>
+
+      </div><!-- /grid -->
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════ -->
+  <footer class="border-t border-white/5 py-8 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-slate-600 font-mono">
+        © 2024 Rodrigo Cárdenas ·
+        <span class="text-cyan-600">HTML</span> ·
+        <span class="text-violet-600">Tailwind CSS</span> ·
+        <span class="text-pink-600">Alpine.js</span>
+      </p>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/rodrigocardenas" target="_blank"
+           class="text-xs font-medium text-slate-600 hover:text-cyan-400 transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/rodrigocadplaz" target="_blank"
+           class="text-xs font-medium text-slate-600 hover:text-cyan-400 transition-colors">LinkedIn</a>
+        <a href="#hero"
+           class="w-8 h-8 glass rounded-lg flex items-center justify-center text-slate-600 hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       ALPINE.JS — Data & Logic
+  ═══════════════════════════════════════════════════════════ -->
+  <script>
+  /**
+   * Portfolio Alpine component.
+   * All content lives here — easy to migrate to a data.json later.
+   */
+  function portfolio() {
+    return {
+
+      /* ── UI state ────────────────────────────────────── */
+      darkMode     : true,
+      activeSection: 'hero',
+      formLoading  : false,
+      formSuccess  : false,
+      formError    : false,
+
+      /* ── Navigation items ────────────────────────────── */
+      nav: [
+        { id: 'hero',        label: 'Inicio'      },
+        { id: 'experiencia', label: 'Experiencia' },
+        { id: 'habilidades', label: 'Skills'      },
+        { id: 'educacion',   label: 'Educación'   },
+        { id: 'contacto',    label: 'Contacto'    },
+      ],
+
+      /* ── Experience timeline ─────────────────────────── */
+      experience: [
+        {
+          role   : 'Interim Chief Technology Officer',
+          company: 'Offside Club',
+          sector : '🎮 Social Gaming · Startup',
+          period : 'Feb 2025 — Presente',
+          emoji  : '🎮',
+          iconBg : 'bg-cyan-500/10 border border-cyan-500/20',
+          bullets: [
+            'Liderazgo de la arquitectura y desarrollo de una plataforma de gaming social deportivo; diseño de sistemas backend escalables con Laravel y AWS.',
+            'Implementación de pipelines CI/CD que mejoraron significativamente la eficiencia de despliegue y la calidad del código.',
+            'Construcción de features de interacción en tiempo real, predicciones y gamificación; gestión y mentoring del equipo de desarrollo.',
+          ],
+          tech: ['Laravel', 'AWS EC2/S3/RDS', 'MySQL', 'Redis', 'Tailwind CSS', 'Alpine.js', 'CI/CD'],
+        },
+        {
+          role   : 'Programador Full Stack Senior',
+          company: 'La Casa de Juana',
+          sector : '🏢 PropTech · Real Estate',
+          period : 'Nov 2021 — Jun 2025',
+          emoji  : '🏠',
+          iconBg : 'bg-violet-500/10 border border-violet-500/20',
+          bullets: [
+            'Desarrollo y evolución de plataforma SaaS inmobiliaria; arquitectura de módulos de gestión de propiedades, CRM y portales de publicación.',
+            'Optimización de rendimiento con Redis y query tuning en MySQL; integración con APIs de portales inmobiliarios y pasarelas de pago.',
+            'Liderazgo técnico de equipo, code reviews, documentación y metodologías ágiles para asegurar calidad y velocidad de entrega.',
+          ],
+          tech: ['Laravel', 'Alpine.js', 'TypeScript', 'MySQL', 'Redis', 'Docker', 'AWS S3'],
+        },
+        {
+          role   : 'Software Developer',
+          company: 'DREAMIT',
+          sector : '💡 Software Factory',
+          period : 'Feb 2021 — Nov 2021',
+          emoji  : '💡',
+          iconBg : 'bg-yellow-500/10 border border-yellow-500/20',
+          bullets: [
+            'Desarrollo de soluciones de software a medida para clientes de distintos sectores: e-commerce, educación y servicios.',
+            'Construcción de APIs REST con Laravel y frontend con Vue.js y Tailwind CSS.',
+            'Participación en todo el ciclo: análisis de requerimientos, desarrollo, QA y despliegue en VPS.',
+          ],
+          tech: ['Laravel', 'Vue.js', 'MySQL', 'Tailwind CSS', 'REST APIs', 'Linux'],
+        },
+        {
+          role   : 'Software Developer Lead',
+          company: 'Springship',
+          sector : '🚀 Tech Startup · EE.UU.',
+          period : 'Jun 2018 — Jun 2021',
+          emoji  : '🚀',
+          iconBg : 'bg-pink-500/10 border border-pink-500/20',
+          bullets: [
+            'Liderazgo técnico en startup norteamericana: coordinación del equipo de desarrollo, planificación de sprints y entrega continua de features.',
+            'Arquitectura y desarrollo de plataformas web SaaS; integración con servicios externos y APIs de terceros.',
+            'Establecimiento de estándares de código, revisión de PRs y cultura de calidad técnica en equipo distribuido.',
+          ],
+          tech: ['PHP', 'Laravel', 'JavaScript', 'MySQL', 'REST APIs', 'Git', 'Agile'],
+        },
+        {
+          role   : 'Ingeniero de Desarrollo de Software',
+          company: 'Hospital San Juan de Dios',
+          sector : '🏥 Salud Pública',
+          period : 'Oct 2018 — Feb 2021',
+          emoji  : '🏥',
+          iconBg : 'bg-emerald-500/10 border border-emerald-500/20',
+          bullets: [
+            'Desarrollo y mantención de sistemas clínicos críticos (HIS): gestión de pacientes, agenda médica y ficha clínica electrónica.',
+            'Integración con plataformas del MINSAL (FONASA / RCE) vía SOAP/REST; módulos de reportería hospitalaria.',
+            'Rediseño de módulos legados mejorando rendimiento y mantenibilidad; soporte a usuarios de áreas médicas y administrativas.',
+          ],
+          tech: ['PHP 7/8', 'Laravel', 'MySQL', 'Oracle DB', 'SOAP/REST', 'Bootstrap'],
+        },
+        {
+          role   : 'Desarrollador de Software',
+          company: 'Instituto Nacional del Cáncer',
+          sector : '🏥 Salud Pública · Oncología',
+          period : 'Ene 2016 — Mar 2018',
+          emoji  : '⚕️',
+          iconBg : 'bg-blue-500/10 border border-blue-500/20',
+          bullets: [
+            'Desarrollo de sistemas de información clínica para el manejo de pacientes oncológicos y gestión de tratamientos.',
+            'Implementación de módulos de reportería y estadísticas para la dirección médica y el MINSAL.',
+            'Mantenimiento y evolución de sistemas legacy; capacitación a usuarios finales del área clínica y administrativa.',
+          ],
+          tech: ['PHP', 'MySQL', 'jQuery', 'Bootstrap', 'HTML5', 'SQL Server'],
+        },
+        {
+          role   : 'Desarrollador Web & Android',
+          company: 'Ibex Technologies',
+          sector : '💻 Desarrollo de Software',
+          period : 'Sep 2014 — Dic 2015',
+          emoji  : '📱',
+          iconBg : 'bg-orange-500/10 border border-orange-500/20',
+          bullets: [
+            'Desarrollo de aplicaciones web y móviles (Android) para clientes empresariales; encargado de servicios web y APIs.',
+            'Construcción de apps Android nativas con integración a backends PHP/REST.',
+            'Diseño e implementación de interfaces de usuario web con HTML, CSS y JavaScript.',
+          ],
+          tech: ['PHP', 'Android (Java)', 'MySQL', 'REST APIs', 'JavaScript', 'CSS3'],
+        },
+        {
+          role   : 'Soporte Informático',
+          company: 'Leonora Sistema S.A.',
+          sector : '🖥️ IT / Soporte',
+          period : 'Feb 2014 — Jun 2014',
+          emoji  : '🖥️',
+          iconBg : 'bg-slate-500/10 border border-slate-500/20',
+          bullets: [
+            'Soporte técnico y mantenimiento de infraestructura tecnológica de la empresa.',
+            'Resolución de incidencias de hardware, software y redes en entorno empresarial.',
+            'Colaboración en proyectos de mejora de procesos internos de TI.',
+          ],
+          tech: ['Soporte TI', 'Redes', 'Windows Server', 'Hardware'],
+        },
+      ],
+
+      /* ── Skills categories ────────────────────────────── */
+      skills: [
+        {
+          name    : 'Backend',
+          subtitle: 'Servidor & APIs',
+          icon    : '⚙️',
+          iconBg  : 'bg-cyan-500/10 border border-cyan-500/20',
+          items   : [
+            { name: 'Laravel',      featured: true  },
+            { name: 'PHP 8+',       featured: true  },
+            { name: 'TypeScript',   featured: true  },
+            { name: 'Node.js',      featured: false },
+            { name: 'REST APIs',    featured: false },
+            { name: 'MySQL 8',      featured: false },
+            { name: 'Redis',        featured: false },
+            { name: 'PostgreSQL',   featured: false },
+          ],
+        },
+        {
+          name    : 'Frontend',
+          subtitle: 'UI & Experiencia',
+          icon    : '🎨',
+          iconBg  : 'bg-violet-500/10 border border-violet-500/20',
+          items   : [
+            { name: 'Tailwind CSS',      featured: true  },
+            { name: 'Alpine.js',         featured: true  },
+            { name: 'Next.js',           featured: true  },
+            { name: 'TypeScript/JS',     featured: true  },
+            { name: 'Vue.js',            featured: false },
+            { name: 'Livewire',          featured: false },
+            { name: 'HTML5 Semántico',   featured: false },
+          ],
+        },
+        {
+          name    : 'Cloud & DevOps',
+          subtitle: 'Infra & Herramientas',
+          icon    : '☁️',
+          iconBg  : 'bg-emerald-500/10 border border-emerald-500/20',
+          items   : [
+            { name: 'AWS (EC2/S3/RDS)', featured: true  },
+            { name: 'Docker',           featured: true  },
+            { name: 'CI/CD Pipelines',  featured: true  },
+            { name: 'Git / GitHub',     featured: false },
+            { name: 'Linux / VPS',      featured: false },
+            { name: 'Nginx',            featured: false },
+            { name: 'Laravel Forge',    featured: false },
+          ],
+        },
+      ],
+
+      /* ── Personal / featured projects ───────────────────── */
+      projects: [
+        {
+          name       : 'Offside Club',
+          type       : 'Social Gaming · CTO',
+          emoji      : '⚽',
+          description: 'Plataforma de gaming social deportivo para comunidades de fans. Predicciones, gamificación, interacción en tiempo real y rankings. Arquitectura escalable en AWS con Laravel y pipelines CI/CD. Participante 4YFN 2026.',
+          tech       : ['Laravel', 'AWS', 'MySQL', 'Redis', 'Tailwind', 'Alpine.js', 'CI/CD'],
+          url        : 'https://offsideclub.com',
+          accentColor: 'bg-cyan-400',
+          badge      : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/25',
+        },
+        {
+          name       : 'La Casa de Juana — PropTech SaaS',
+          type       : 'SaaS · Real Estate',
+          emoji      : '🏠',
+          description: 'Plataforma SaaS inmobiliaria con gestión de propiedades, CRM integrado, publicación automática en portales y sistema de reportería para agentes y administradores.',
+          tech       : ['Laravel', 'Alpine.js', 'TypeScript', 'MySQL', 'Redis', 'Docker', 'AWS S3'],
+          url        : '#',
+          accentColor: 'bg-violet-400',
+          badge      : 'bg-violet-500/10 text-violet-400 border border-violet-500/25',
+        },
+        {
+          name       : 'Sistema Clínico HIS',
+          type       : 'Enterprise · HealthTech',
+          emoji      : '🏥',
+          description: 'Sistema de información hospitalaria para gestión de pacientes, agenda médica, ficha clínica electrónica y reportería. Integración SOAP/REST con plataformas MINSAL (FONASA/RCE). Usado en producción en hospitales públicos.',
+          tech       : ['PHP', 'Laravel', 'Oracle DB', 'MySQL', 'Bootstrap', 'SOAP/REST'],
+          url        : '#',
+          accentColor: 'bg-emerald-400',
+          badge      : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/25',
+        },
+        {
+          name       : 'App Android Nativa',
+          type       : 'Android App',
+          emoji      : '📱',
+          description: 'Aplicación Android nativa con sincronización offline-first, consumo de APIs REST, notificaciones push y UI Material Design. Desarrollada con Java/Kotlin y backend en PHP.',
+          tech       : ['Java/Kotlin', 'Android SDK', 'Retrofit', 'Room DB', 'Firebase', 'PHP REST'],
+          url        : '#',
+          accentColor: 'bg-pink-400',
+          badge      : 'bg-pink-500/10 text-pink-400 border border-pink-500/25',
+        },
+      ],
+
+      /* ── Methods ─────────────────────────────────────── */
+      init() {
+        /* Active section tracking */
+        const ids = ['hero', 'experiencia', 'habilidades', 'educacion', 'contacto'];
+        const secObs = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) this.activeSection = e.target.id; });
+        }, { threshold: 0.35 });
+        ids.forEach(id => { const el = document.getElementById(id); if (el) secObs.observe(el); });
+
+        /* Scroll-reveal animation */
+        const revObs = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+      },
+
+      toggleDark() {
+        this.darkMode = !this.darkMode;
+        document.documentElement.classList.toggle('dark');
+      },
+
+      async submitForm(event) {
+        this.formLoading = true;
+        this.formSuccess = false;
+        this.formError   = false;
+        try {
+          const res = await fetch(event.target.action, {
+            method : 'POST',
+            body   : new FormData(event.target),
+            headers: { 'Accept': 'application/json' },
+          });
+          if (res.ok) { this.formSuccess = true; event.target.reset(); }
+          else          this.formError = true;
+        } catch {
+          this.formError = true;
+        } finally {
+          this.formLoading = false;
+          setTimeout(() => { this.formSuccess = false; this.formError = false; }, 5000);
+        }
+      },
+
+    };
+  }
+  </script>
+
+</body>
+</html>
