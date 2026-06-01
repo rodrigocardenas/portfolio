@@ -241,11 +241,11 @@
 
         <!-- Logo -->
         <a href="#hero" class="flex items-center gap-2.5 group">
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-amber-600 flex items-center justify-center font-mono font-bold text-xs text-white shadow-lg shadow-cyan-500/20">
-            RC
+          <div class="w-8 h-8 rounded-full overflow-hidden ring-2 ring-cyan-500/40 shadow-lg shadow-cyan-500/20 shrink-0">
+            <img src="./assets/profile_avatar.jpg" alt="Rodrigo Cárdenas" class="w-full h-full object-cover" />
           </div>
           <span class="hidden sm:block text-sm font-semibold text-slate-300 group-hover:text-white transition-colors">
-            rodrigo<span class="text-cyan-400">.dev</span>
+            rodrigo<span class="text-cyan-400">cardpla</span>
           </span>
         </a>
 
@@ -340,6 +340,20 @@
     <div class="orb w-[240px] h-[240px] bg-pink-500/6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="animation-delay:5s"></div>
 
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-36 text-center">
+
+      <!-- Profile avatar -->
+      <div
+        class="flex justify-center mb-8"
+        style="animation: fadeInUp 0.6s ease-out 0s both;"
+      >
+        <div class="relative">
+          <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden ring-4 ring-cyan-500/30 shadow-2xl shadow-cyan-500/20">
+            <img src="./assets/profile_avatar.jpg" alt="Rodrigo Cárdenas Plaza" class="w-full h-full object-cover" />
+          </div>
+          <!-- Online indicator -->
+          <span class="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-[#080810] shadow-lg shadow-emerald-500/40"></span>
+        </div>
+      </div>
 
       <!-- Availability badge -->
       <div
@@ -1112,13 +1126,23 @@
       projects: [
         {
           name       : 'Offside Club',
-          type       : 'Social Gaming · CTO',
+          type       : 'Social Gaming · CTO · En vivo 🟢',
           emoji      : '⚽',
           description: 'Plataforma de gaming social deportivo para comunidades de fans. Predicciones, gamificación, interacción en tiempo real y rankings. Arquitectura escalable en AWS con Laravel y pipelines CI/CD. Participante 4YFN 2026.',
           tech       : ['Laravel', 'AWS', 'MySQL', 'Redis', 'Tailwind', 'Alpine.js', 'CI/CD'],
-          url        : 'https://offsideclub.com',
+          url        : 'https://offsideclub.es/',
           accentColor: 'bg-cyan-400',
           badge      : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/25',
+        },
+        {
+          name       : 'Open Community Platform',
+          type       : 'Social Impact · En vivo 🟢',
+          emoji      : '🌿',
+          description: 'Plataforma open source para empoderar comunidades rurales mediante datos territoriales estratégicos y transformación sostenible. Arquitectura diseñada para ser accesible, escalable y adaptable a distintos contextos geográficos.',
+          tech       : ['Laravel', 'TypeScript', 'MySQL', 'AWS', 'Tailwind', 'Alpine.js', 'Open Source'],
+          url        : 'http://opencommunityplatform.org/',
+          accentColor: 'bg-emerald-400',
+          badge      : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/25',
         },
         {
           name       : 'La Casa de Juana — PropTech SaaS',
