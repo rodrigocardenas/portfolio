@@ -653,22 +653,42 @@
             ></div>
 
             <div class="flex items-start justify-between mb-3">
-              <div class="flex items-center gap-3">
-                <span class="text-2xl" x-text="proj.emoji"></span>
+              <a
+                :href="proj.url !== '#' ? proj.url : null"
+                :target="proj.url !== '#' ? '_blank' : null"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 group/title"
+                :class="proj.url !== '#' ? 'cursor-pointer' : 'cursor-default'"
+              >
+                <!-- Project logo -->
+                <div class="shrink-0 w-10 h-10 rounded-xl overflow-hidden bg-white/5 border border-white/8 flex items-center justify-center p-1">
+                  <img
+                    :src="proj.logo"
+                    :alt="proj.name"
+                    class="w-full h-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
                 <div>
-                  <h3 class="font-bold text-white text-sm" x-text="proj.name"></h3>
+                  <h3
+                    class="font-bold text-white text-sm transition-colors"
+                    :class="proj.url !== '#' ? 'group-hover/title:text-cyan-400' : ''"
+                    x-text="proj.name"
+                  ></h3>
                   <span
                     class="inline-block text-[0.65rem] font-semibold px-2 py-0.5 rounded-full mt-0.5"
                     :class="proj.badge"
                     x-text="proj.type"
                   ></span>
                 </div>
-              </div>
+              </a>
               <a
+                x-show="proj.url !== '#'"
                 :href="proj.url"
                 target="_blank"
-                class="text-slate-600 hover:text-cyan-400 transition-colors mt-1"
-                title="Ver proyecto"
+                rel="noopener noreferrer"
+                class="text-slate-600 hover:text-cyan-400 transition-colors mt-1 shrink-0"
+                title="Abrir en nueva pestaña"
               >
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1127,7 +1147,7 @@
         {
           name       : 'Offside Club',
           type       : 'Social Gaming · CTO · En vivo 🟢',
-          emoji      : '⚽',
+          logo       : './assets/logo-offside-512x512.png',
           description: 'Plataforma de gaming social deportivo para comunidades de fans. Predicciones, gamificación, interacción en tiempo real y rankings. Arquitectura escalable en AWS con Laravel y pipelines CI/CD. Participante 4YFN 2026.',
           tech       : ['Laravel', 'AWS', 'MySQL', 'Redis', 'Tailwind', 'Alpine.js', 'CI/CD'],
           url        : 'https://offsideclub.es/',
@@ -1137,7 +1157,7 @@
         {
           name       : 'Open Community Platform',
           type       : 'Social Impact · En vivo 🟢',
-          emoji      : '🌿',
+          logo       : './assets/logo_opc.svg',
           description: 'Plataforma open source para empoderar comunidades rurales mediante datos territoriales estratégicos y transformación sostenible. Arquitectura diseñada para ser accesible, escalable y adaptable a distintos contextos geográficos.',
           tech       : ['Laravel', 'TypeScript', 'MySQL', 'AWS', 'Tailwind', 'Alpine.js', 'Open Source'],
           url        : 'http://opencommunityplatform.org/',
@@ -1145,30 +1165,10 @@
           badge      : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/25',
         },
         {
-          name       : 'La Casa de Juana — PropTech SaaS',
-          type       : 'SaaS · Real Estate',
-          emoji      : '🏠',
-          description: 'Plataforma SaaS inmobiliaria con gestión de propiedades, CRM integrado, publicación automática en portales y sistema de reportería para agentes y administradores.',
-          tech       : ['Laravel', 'Alpine.js', 'TypeScript', 'MySQL', 'Redis', 'Docker', 'AWS S3'],
-          url        : '#',
-          accentColor: 'bg-amber-400',
-          badge      : 'bg-amber-500/10 text-amber-400 border border-amber-500/25',
-        },
-        {
-          name       : 'Sistema Clínico HIS',
-          type       : 'Enterprise · HealthTech',
-          emoji      : '🏥',
-          description: 'Sistema de información hospitalaria para gestión de pacientes, agenda médica, ficha clínica electrónica y reportería. Integración SOAP/REST con plataformas MINSAL (FONASA/RCE). Usado en producción en hospitales públicos.',
-          tech       : ['PHP', 'Laravel', 'Oracle DB', 'MySQL', 'Bootstrap', 'SOAP/REST'],
-          url        : '#',
-          accentColor: 'bg-emerald-400',
-          badge      : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/25',
-        },
-        {
-          name       : 'App Android Nativa',
+          name       : 'Denuncia Ya',
           type       : 'Android App',
-          emoji      : '📱',
-          description: 'Aplicación Android nativa con sincronización offline-first, consumo de APIs REST, notificaciones push y UI Material Design. Desarrollada con Java/Kotlin y backend en PHP.',
+          logo       : './assets/logo_denunciaya.png',
+          description: 'App para reportar eventos de caracter urgente en la via publica. Android nativa con sincronización offline-first, consumo de APIs REST, notificaciones push y UI Material Design. Desarrollada con Java/Kotlin y backend en PHP.',
           tech       : ['Java/Kotlin', 'Android SDK', 'Retrofit', 'Room DB', 'Firebase', 'PHP REST'],
           url        : '#',
           accentColor: 'bg-pink-400',
