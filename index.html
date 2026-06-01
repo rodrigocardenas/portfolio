@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -65,7 +65,7 @@
 
     /* ─── Gradient text ─────────────────────────────────────── */
     .gradient-text {
-      background: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #22d3ee 100%);
+      background: linear-gradient(135deg, #22d3ee 0%, #f59e0b 50%, #22d3ee 100%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -97,7 +97,7 @@
 
     /* ─── Primary CTA button ─────────────────────────────────── */
     .btn-primary {
-      background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+      background: linear-gradient(135deg, #06b6d4, #f59e0b);
       background-size: 200% auto;
       position: relative;
       overflow: hidden;
@@ -106,7 +106,7 @@
     .btn-primary:hover {
       background-position: right center;
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(6,182,212,0.4), 0 4px 20px rgba(139,92,246,0.3);
+      box-shadow: 0 12px 40px rgba(6,182,212,0.4), 0 4px 20px rgba(245,158,11,0.3);
     }
 
     /* ─── Dot-grid background ────────────────────────────────── */
@@ -142,7 +142,7 @@
       font-size: 0.68rem;
       padding: 0.2rem 0.65rem;
       border-radius: 9999px;
-      background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(139,92,246,0.08));
+      background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(245,158,11,0.08));
       border: 1px solid rgba(6,182,212,0.18);
       color: #67e8f9;
       white-space: nowrap;
@@ -163,7 +163,7 @@
     ::-webkit-scrollbar       { width: 5px; }
     ::-webkit-scrollbar-track { background: #080810; }
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(to bottom, #06b6d4, #8b5cf6);
+      background: linear-gradient(to bottom, #06b6d4, #f59e0b);
       border-radius: 3px;
     }
 
@@ -194,7 +194,7 @@
       top: 0;
       bottom: 0;
       width: 1px;
-      background: linear-gradient(to bottom, #22d3ee 0%, #8b5cf6 60%, transparent 100%);
+      background: linear-gradient(to bottom, #22d3ee 0%, #f59e0b 60%, transparent 100%);
       opacity: 0.25;
     }
 
@@ -241,7 +241,7 @@
 
         <!-- Logo -->
         <a href="#hero" class="flex items-center gap-2.5 group">
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-violet-600 flex items-center justify-center font-mono font-bold text-xs text-white shadow-lg shadow-cyan-500/20">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-amber-600 flex items-center justify-center font-mono font-bold text-xs text-white shadow-lg shadow-cyan-500/20">
             RC
           </div>
           <span class="hidden sm:block text-sm font-semibold text-slate-300 group-hover:text-white transition-colors">
@@ -266,23 +266,7 @@
         <!-- Actions -->
         <div class="flex items-center gap-2">
 
-          <!-- Dark / Light toggle -->
-          <button
-            @click="toggleDark()"
-            class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all"
-            title="Alternar tema"
-          >
-            <svg x-show="darkMode" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-            </svg>
-            <svg x-show="!darkMode" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-            </svg>
-          </button>
-
-          <!-- Download CV -->
+        <!-- Download CV -->
           <a
             href="./assets/CV_Rodrigo_Cardenas.pdf"
             download
@@ -352,7 +336,7 @@
 
     <!-- Ambient orbs -->
     <div class="orb w-[520px] h-[520px] bg-cyan-500/8 -top-24 -left-32" style="animation-delay:0s"></div>
-    <div class="orb w-[380px] h-[380px] bg-violet-600/8 bottom-16 right-0" style="animation-delay:2.5s"></div>
+    <div class="orb w-[380px] h-[380px] bg-amber-600/8 bottom-16 right-0" style="animation-delay:2.5s"></div>
     <div class="orb w-[240px] h-[240px] bg-pink-500/6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="animation-delay:5s"></div>
 
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-36 text-center">
@@ -389,7 +373,7 @@
           CTO &amp; Senior Full Stack Developer
           <span class="text-cyan-400"> /&gt;</span>
         </p>
-        <div class="h-px w-14 bg-gradient-to-l from-transparent to-violet-500 opacity-60"></div>
+        <div class="h-px w-14 bg-gradient-to-l from-transparent to-amber-500 opacity-60"></div>
       </div>
 
       <!-- Description -->
@@ -401,7 +385,7 @@
         <strong class="text-white font-semibold">+10 años de experiencia</strong>
         llevando productos digitales de la idea a producción en
         <span class="text-cyan-300 font-medium">HealthTech</span>,
-        <span class="text-violet-300 font-medium">PropTech</span>
+        <span class="text-amber-300 font-medium">PropTech</span>
         y <span class="text-pink-300 font-medium">Social Gaming</span>.
         Actualmente <strong class="text-white font-semibold">CTO en Offside</strong>,
         construyendo la próxima plataforma de gaming social deportivo.
@@ -472,9 +456,9 @@
         <!-- Email -->
         <a
           href="mailto:rodrigo.cardenasplaza@gmail.com"
-          class="group flex items-center gap-2 px-4 py-2 glass rounded-xl hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-300"
+          class="group flex items-center gap-2 px-4 py-2 glass rounded-xl hover:border-amber-500/30 hover:bg-amber-500/5 transition-all duration-300"
         >
-          <svg class="w-4 h-4 text-slate-400 group-hover:text-violet-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
@@ -835,7 +819,7 @@
         <!-- Contact form -->
         <div class="md:col-span-3 glass rounded-2xl p-7 sm:p-8">
           <form
-            action="https://formspree.io/f/YOUR_FORM_ID"
+            action="https://formspree.io/f/mqejvjen"
             method="POST"
             @submit.prevent="submitForm($event)"
             class="space-y-4"
@@ -913,7 +897,7 @@
       <p class="text-xs text-slate-600 font-mono">
         © 2024 Rodrigo Cárdenas ·
         <span class="text-cyan-600">HTML</span> ·
-        <span class="text-violet-600">Tailwind CSS</span> ·
+        <span class="text-amber-600">Tailwind CSS</span> ·
         <span class="text-pink-600">Alpine.js</span>
       </p>
       <div class="flex items-center gap-6">
@@ -944,7 +928,6 @@
     return {
 
       /* ── UI state ────────────────────────────────────── */
-      darkMode     : true,
       activeSection: 'hero',
       formLoading  : false,
       formSuccess  : false,
@@ -981,7 +964,7 @@
           sector : '🏢 PropTech · Real Estate',
           period : 'Nov 2021 — Jun 2025',
           emoji  : '🏠',
-          iconBg : 'bg-violet-500/10 border border-violet-500/20',
+          iconBg : 'bg-amber-500/10 border border-amber-500/20',
           bullets: [
             'Desarrollo y evolución de plataforma SaaS inmobiliaria; arquitectura de módulos de gestión de propiedades, CRM y portales de publicación.',
             'Optimización de rendimiento con Redis y query tuning en MySQL; integración con APIs de portales inmobiliarios y pasarelas de pago.',
@@ -1097,7 +1080,7 @@
           name    : 'Frontend',
           subtitle: 'UI & Experiencia',
           icon    : '🎨',
-          iconBg  : 'bg-violet-500/10 border border-violet-500/20',
+          iconBg  : 'bg-amber-500/10 border border-amber-500/20',
           items   : [
             { name: 'Tailwind CSS',      featured: true  },
             { name: 'Alpine.js',         featured: true  },
@@ -1144,8 +1127,8 @@
           description: 'Plataforma SaaS inmobiliaria con gestión de propiedades, CRM integrado, publicación automática en portales y sistema de reportería para agentes y administradores.',
           tech       : ['Laravel', 'Alpine.js', 'TypeScript', 'MySQL', 'Redis', 'Docker', 'AWS S3'],
           url        : '#',
-          accentColor: 'bg-violet-400',
-          badge      : 'bg-violet-500/10 text-violet-400 border border-violet-500/25',
+          accentColor: 'bg-amber-400',
+          badge      : 'bg-amber-500/10 text-amber-400 border border-amber-500/25',
         },
         {
           name       : 'Sistema Clínico HIS',
@@ -1178,16 +1161,17 @@
         }, { threshold: 0.35 });
         ids.forEach(id => { const el = document.getElementById(id); if (el) secObs.observe(el); });
 
-        /* Scroll-reveal animation */
-        const revObs = new IntersectionObserver((entries) => {
-          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
-      },
-
-      toggleDark() {
-        this.darkMode = !this.darkMode;
-        document.documentElement.classList.toggle('dark');
+        /*
+         * Scroll-reveal: must wait for Alpine x-for to finish rendering
+         * before querying .reveal elements, otherwise dynamic cards
+         * (experience, skills, projects) are never observed and stay opacity:0
+         */
+        this.$nextTick(() => {
+          const revObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+          }, { threshold: 0.08 });
+          document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+        });
       },
 
       async submitForm(event) {
